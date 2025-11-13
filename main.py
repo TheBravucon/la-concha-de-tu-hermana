@@ -50,7 +50,7 @@ def mostrar_login(root):
             boton_cambio.config(text='Cambiar a registro')
             ocultar_mostrar_campos()
 
-    titulo = ttk.Label(frame, text="Iniciar Sesión", font=("Segoe UI", 20, "bold"))
+    titulo = ttk.Label(frame, text="Crear Cuenta", font=("Segoe UI", 20, "bold"))
     titulo.grid(row=0, column=0, pady=15)
 
     ttk.Label(frame, text="Email:").grid(row=1, column=0)
