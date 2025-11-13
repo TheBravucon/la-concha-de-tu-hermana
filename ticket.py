@@ -1,16 +1,29 @@
-import pandas as pd
 import datetime
 
+import pandas as pd
+
+EXCEL_COLUMNS = ['Id', 'Nombre de producto', 'Precio', 'Cantidad', 'Subtotal']
+
+
 def crear_ticket(carrito):
-    df = pd.DataFrame(carrito)
-    df["subtotal"] = df["precio"] * df["cantidad"]
-    total = df["subtotal"].sum()
+    data = []
+    total = 0.0
+    for producto in carrito:
+        id = producto['id']
+        nombre = producto['nombre']
+        precio = producto['precio']
+        cantidad = producto['cantidad']
+        subtotal = precio * cantidad
+        total += subtotal
+        data.append((id, nombre, f'$ {precio:.2f}', cantidad, f'$ {subtotal:.2f}'))
+
+    df = pd.DataFrame(data, columns=EXCEL_COLUMNS)
 
     fecha = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    nombre_archivo = f"ticket_{fecha}.csv"
+    nombre_archivo = f"ticket_{fecha}.xlsx"
 
-    df.loc[len(df.index)] = ["", "", "", f"TOTAL: ${total:.2f}"]
-    df.to_csv(nombre_archivo, index=False, encoding="utf-8-sig")
+    df.loc[len(carrito), 'Total'] = f"$ {total:.2f}"
+    df.to_excel(nombre_archivo, index=False, sheet_name='Sheet1')
 
     print(f"Ticket generado: {nombre_archivo}")
     return nombre_archivo, total
