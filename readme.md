@@ -70,10 +70,15 @@ o en Linux/macOS:
 rm -rf build main.spec
 
 🧾 Dependencias utilizadas
+
 Librería	Descripción breve
+
 ttkbootstrap	Estilos modernos para interfaces Tkinter
+
 pandas	Manejo y análisis de datos en tablas
+
 sqlite3	Base de datos embebida incluida en Python
+
 pyinstaller	Empaquetado de scripts Python a ejecutables .exe
 
 🪪 Autor
